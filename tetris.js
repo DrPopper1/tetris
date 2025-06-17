@@ -19,12 +19,22 @@ export class Tetris {
     }
 
     generatePlayfield() {
-        this.playfield = new Array(PLAYFIELD_ROWS).fill()
-          .map(() => new Array(PLAYFIELD_COLUMNS).fill(0)); // 0?
+        this.playfield = new Array(PLAYFIELD_ROWS).fill().map(() => new Array(PLAYFIELD_COLUMNS).fill(0));
     }
 
     generateTetromino() {
-        const name = getRandomElement(TETROMINO_NAMES); /// fuck GitHub
+        const name = getRandomElement(TETROMINO_NAMES);
         const matrix = TETROMINOES[name];
+
+        const column = PLAYFIELD_COLUMNS / 2 - Math.floor(matrix.length / 2);
+        // const row = -2;
+        const row = 3;
+
+        this.tetromino = {
+            name,
+            matrix,
+            row,
+            column
+        }
     }
 }
